@@ -1,7 +1,25 @@
-# NodejS-Docker-tutorial
+`kubectl apply -f https://raw.githubusercontent.com/cloudnativelabs/kube-router/master/daemonset/kubeadm-kuberouter.yaml`
+Check Cluster
+`kubectl get services`
 
-## Build Image
-`docker build -t nodejs-app .`
+## Add worked Nodes
+`kubeadm token create --print-join-command`
+copy join command and run on worker node.
 
-## Run the App (Container name) (Image name)
-`docker run -itd -p 8080:8080 --name nodejs-v1  nodejs-app`
+## Verify Worker Node
+`kubectl get nodes`
+
+## Create Deployment to Kubernetes
+`kubectl create deployment demo --image=gcr.io/google-samples/kubernetes-bootcamp:v1`
+
+## Check deployment
+`kubectl get deployments`
+
+## Check pods
+`kubectl get pods`
+
+## Expose
+`kubectl expose deployment/demo --type="NodePort" --port=8001 --name="demo`
+
+## Test
+`curl http://[worker_node_ip]:8001`
